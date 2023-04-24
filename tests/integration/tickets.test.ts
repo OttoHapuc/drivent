@@ -99,7 +99,7 @@ describe('GET /tickets', () => {
   });
 
   describe('when token is valid', () => {
-    it('should respond with status 404 when user doesnt have an enrollment yet', async () => {
+    it('should respond with status 404 when user does not have an enrollment yet', async () => {
       const token = await generateValidToken();
 
       const response = await server.get('/tickets').set('Authorization', `Bearer ${token}`);

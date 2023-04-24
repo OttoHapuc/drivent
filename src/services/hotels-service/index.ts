@@ -10,7 +10,7 @@ export async function findAll(userId: number) {
     Ticket.TicketType.isRemote === true
   ) throw error.paymentRequired();
   const hotels = await hotelsRepository.getAll();
-  if (hotels.length === 0 || !hotels) throw error.notFoundError();
+  if (hotels.length == 0 || !hotels) throw error.notFoundError();
   return hotels;
 }
 
