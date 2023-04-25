@@ -135,7 +135,7 @@ describe('GET /hotels/hotelId', () => {
 
   it('should respond with status 401 if given token is not valid', async () => {
     const token = faker.lorem.word();
-    const response = await server.get('/hotels/0').set('Authorization', `Bearer ${token}`)
+    const response = await server.get('/hotels/0').set('Authorization', `Bearer ${token}`);
     expect(response.status).toBe(httpStatus.UNAUTHORIZED);
   });
 
