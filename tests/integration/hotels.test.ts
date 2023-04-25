@@ -10,12 +10,9 @@ import {
   createTicketType,
   createSpecificTicketType,
   createTicket,
-  createPayment,
-  generateCreditCardData,
   createHotelWithRooms,
 } from '../factories';
 import app, { init } from '@/app';
-import { prisma } from '@/config';
 
 beforeAll(async () => {
   await init();
