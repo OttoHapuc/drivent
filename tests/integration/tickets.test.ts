@@ -194,8 +194,6 @@ describe('POST /tickets', () => {
         .set('Authorization', `Bearer ${token}`)
         .send({ ticketTypeId: ticketType.id });
 
-      console.log(response.body);
-
       expect(response.status).toEqual(httpStatus.NOT_FOUND);
     });
 
