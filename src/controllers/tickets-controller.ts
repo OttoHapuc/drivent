@@ -9,6 +9,7 @@ export async function getTicketTypes(req: AuthenticatedRequest, res: Response, n
     const ticketTypes = await ticketService.getTicketType();
     return res.status(httpStatus.OK).send(ticketTypes);
   } catch (e) {
+    if (e.name == 'NotFoundError') return res.sendStatus(httpStatus.NOT_FOUND);
     next(e);
   }
 }
@@ -20,6 +21,7 @@ export async function getTickets(req: AuthenticatedRequest, res: Response, next:
     const ticket = await ticketService.getTicketByUserId(userId);
     return res.status(httpStatus.OK).send(ticket);
   } catch (e) {
+    if (e.name == 'NotFoundError') return res.sendStatus(httpStatus.NOT_FOUND);
     next(e);
   }
 }

@@ -190,9 +190,11 @@ describe('POST /tickets', () => {
       const ticketType = await createTicketType();
 
       const response = await server
-        .post('/tickets')
+        .get('/tickets')
         .set('Authorization', `Bearer ${token}`)
         .send({ ticketTypeId: ticketType.id });
+
+      console.log(response.body);
 
       expect(response.status).toEqual(httpStatus.NOT_FOUND);
     });
