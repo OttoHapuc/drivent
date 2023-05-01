@@ -10,7 +10,6 @@ export async function findAllBookingByUserId(req: AuthenticatedRequest, res: Res
     res.send(bookings);
   } catch (e) {
     if (e.name === 'NotFoundError') return res.sendStatus(httpStatus.NOT_FOUND);
-    next(e);
   }
 }
 
@@ -23,7 +22,6 @@ export async function insertBooking(req: AuthenticatedRequest, res: Response, ne
   } catch (e) {
     if (e.name === 'NotFoundError') return res.sendStatus(httpStatus.NOT_FOUND);
     if (e.name === 'this element is not available') return res.sendStatus(httpStatus.FORBIDDEN);
-    next(e);
   }
 }
 
@@ -37,6 +35,5 @@ export async function updateBooking(req: AuthenticatedRequest, res: Response, ne
   } catch (e) {
     if (e.name === 'NotFoundError') return res.sendStatus(httpStatus.NOT_FOUND);
     if (e.name === 'this element is not available') return res.sendStatus(httpStatus.FORBIDDEN);
-    next(e);
   }
 }
