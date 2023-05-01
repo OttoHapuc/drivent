@@ -258,6 +258,21 @@ describe('PUT /booking', () => {
       expect(response.status).toBe(httpStatus.FORBIDDEN);
     });
 
+    it('should return status 404 if does not have a room', async () => {
+      const user = await factory.createUser();
+      const token = await generateValidToken(user);
+      const enrollment = await factory.createEnrollmentWithAddress(user);
+      const ticketType = await factory.createSpecificTicketType(false, true);
+      const hotel = await factory.createHotelWithRooms();
+      await factory.createTicket(enrollment.id, ticketType.id, TicketStatus.PAID);
+
+      const response = await server.put('/booking/0').set('Authorization', `Bearer ${token}`).send({
+        roomId: 5,
+      });
+
+      expect(response.status).toBe(httpStatus.NOT_FOUND);
+    });
+
     it('should return status 403 if the new room has no vacancies', async () => {
       const user = await factory.createUser();
       const token = await generateValidToken(user);
@@ -320,9 +335,6 @@ describe('PUT /booking', () => {
         .send({
           roomId: roomNew.id,
         });
-
-      console.log(response.status);
-      console.log(response.body.bookingId === booking.id);
 
       expect(response.status).toBe(httpStatus.OK);
 

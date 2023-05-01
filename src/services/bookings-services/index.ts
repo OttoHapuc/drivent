@@ -1,12 +1,10 @@
 import { TicketStatus } from '@prisma/client';
 import {
-  BookingById,
   bookingsByUserId,
   createBooking,
   findRoom,
   findBookingsOfRoom,
   upBooking,
-  verifyBooking,
 } from '@/repositories/bookings-repository';
 import { unavailable, notFoundError, unauthorizedError } from '@/errors';
 import * as hotelRepository from '@/repositories/hotels-repository';

@@ -17,17 +17,9 @@ export async function createBooking(userId: number, roomId: number) {
   return await prisma.booking.create({ data: { userId, roomId } });
 }
 
-export async function BookingById(bookingId: number) {
-  return await prisma.booking.findFirst({ where: { id: bookingId } });
-}
-
 export async function upBooking(bookingId: number, roomId: number) {
   return await prisma.booking.update({
     where: { id: bookingId },
     data: { roomId },
   });
-}
-
-export async function verifyBooking(userId: number, bookingId: number) {
-  return await prisma.booking.findFirst({ where: { id: bookingId, userId } });
 }
